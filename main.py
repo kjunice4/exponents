@@ -215,7 +215,7 @@ class Exponents_steps(Screen):
                 entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
                 print("entry string :",entry)
                 print()
-                self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved +  "  :  ", font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text="Exponents step of : " + display + " = " + solved +  "  :  ", font_size = 50, size_hint_y= None, height=100))
                 self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)
             i = i + 1

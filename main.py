@@ -21,7 +21,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 30
+            font_size: 75
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -85,7 +85,7 @@ Builder.load_string("""
                     padding: 10, 10
                     background_color: 1, 0 , 0 , 1
                     on_release:
-                        Exponent_entry.text = ""
+                        Power_entry.text = ""
                         Base_entry.text = ""
                         
             Button:
@@ -97,7 +97,7 @@ Builder.load_string("""
                 height: 200
                 padding: 10, 10
                 on_release:
-                    Exponent_entry.text = ""
+                    Power_entry.text = ""
                     Base_entry.text = ""
                     list_of_steps.clear_widgets()              
                     
@@ -120,7 +120,7 @@ Builder.load_string("""
                     id: Base_entry
                     text: Base_entry.text
                     multiline: False
-                    font_size: 75
+                    font_size: 125
                     size_hint_y: None
                     height: 200
                     padding: 10
@@ -144,7 +144,7 @@ Builder.load_string("""
                     id: Power_entry
                     text: Power_entry.text
                     multiline: False
-                    font_size: 75
+                    font_size: 125
                     size_hint_y: None
                     height: 200
                     padding: 10              

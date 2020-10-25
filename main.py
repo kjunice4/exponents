@@ -54,7 +54,7 @@ Builder.load_string("""
             Label:
                 font_size: 30
                 size_hint_y: None
-                height: 100
+                height: 200
                 padding: 10, 10
                 text: "Exponents Step By Step Solver"
             
@@ -72,7 +72,7 @@ Builder.load_string("""
                     font_size: 75
                     size_hint_y: None
                     background_color: 1, 0 , 0 , 1
-                    height: 100
+                    height: 200
                     padding: 10, 10
                     on_release:
                         Exponent_entry.text = ""
@@ -84,7 +84,7 @@ Builder.load_string("""
                     text: "Clear Steps"   
                     font_size: 75
                     size_hint_y: None
-                    height: 100
+                    height: 200
                     padding: 10, 10
                     on_release:
                         list_of_steps.clear_widgets()
@@ -99,7 +99,7 @@ Builder.load_string("""
                 Label:
                     font_size: 30
                     size_hint_y: None
-                    height: 100
+                    height: 200
                     font_size: 75
                     padding: 10, 10
                     text: "Base:"
@@ -110,7 +110,7 @@ Builder.load_string("""
                     multiline: False
                     font_size: 50
                     size_hint_y: None
-                    height: 75
+                    height: 100
                     padding: 10
                                 
             BoxLayout:
@@ -123,7 +123,7 @@ Builder.load_string("""
                 Label:
                     font_size: 30
                     size_hint_y: None
-                    height: 100
+                    height: 200
                     font_size: 75
                     padding: 10, 10
                     text: "Exponent:"
@@ -134,7 +134,7 @@ Builder.load_string("""
                     multiline: False
                     font_size: 50
                     size_hint_y: None
-                    height: 75
+                    height: 100
                     padding: 10
 
             BoxLayout:
@@ -147,6 +147,7 @@ Builder.load_string("""
                 Button:
                     text: "Clear Entry"   
                     font_size: 75
+                    height: 200
                     padding: 10, 10
                     background_color: 1, 0 , 0 , 1
                     on_release:
@@ -167,7 +168,7 @@ Builder.load_string("""
                     font_size: 75
                     size_hint_y: None
                     background_color: 0, 1 , 0 , 1
-                    height: 100
+                    height: 200
                     padding: 10, 10
                     on_release:
                         Exponents_steps.steps(Base_entry.text + "^" + Exponent_entry.text)    
@@ -189,7 +190,7 @@ class Exponents_steps(Screen):
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
         
-        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + entry.replace(" ",""), font_size = 30, size_hint_y= None, height=100))
+        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + entry.replace(" ",""), font_size = 75, size_hint_y= None, height=100))
         self.layouts.append(layout)
         try:
             i = 0
@@ -209,8 +210,8 @@ class Exponents_steps(Screen):
                     expand = entry[0] + mult_signs * times
                     print()
                     print("expand",expand)
-                    self.ids.list_of_steps.add_widget(Label(text="Expanded form of : " + display, font_size = 30, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text=expand, font_size = 30, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text="Expanded form of : " + display, font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text=expand, font_size = 75, size_hint_y= None, height=100))
                     self.layouts.append(layout)
 
                 solved = str(float(entry[0]) ** float(entry[1]))
@@ -227,20 +228,20 @@ class Exponents_steps(Screen):
                 entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
                 print("entry string :",entry)
                 print()
-                self.ids.list_of_steps.add_widget(Label(text="Exponents step of : " + display + " = " + solved +  "  :  ", font_size = 30, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 30, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text="Exponents step of : " + display + " = " + solved +  "  :  ", font_size = 75, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 75, size_hint_y= None, height=100))
                 self.layouts.append(layout)
             i = i + 1
             
             entry = str(format(float(entry),",")).replace("(","").replace(")","")
             print()
             print("entry formatted :    ",entry)
-            self.ids.list_of_steps.add_widget(Label(text="Final Answer : " + entry, font_size = 30, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 30, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text="Final Answer : " + entry, font_size = 75, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 75, size_hint_y= None, height=100))
             self.layouts.append(layout)    
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 30, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 30, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 75, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 75, size_hint_y= None, height=100))
             self.layouts.append(layout)  
 
 
@@ -260,5 +261,3 @@ class Exponents(App):
 
 if __name__ == '__main__':
     Exponents().run()
-    
-

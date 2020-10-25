@@ -52,7 +52,7 @@ Builder.load_string("""
             height: self.minimum_height
         
             Label:
-                font_size: 30
+                font_size: 75
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -64,21 +64,9 @@ Builder.load_string("""
                 spacing:10
                 size_hint: 1, None
                 width:300
+                size_hint_y: None
                 height: self.minimum_height 
                 
-                Button:
-                    id: steps
-                    text: "Clear All"   
-                    font_size: 75
-                    size_hint_y: None
-                    background_color: 1, 0 , 0 , 1
-                    height: 200
-                    padding: 10, 10
-                    on_release:
-                        Exponent_entry.text = ""
-                        Base_entry.text = ""
-                        list_of_steps.clear_widgets()
-
                 Button:
                     id: steps
                     text: "Clear Steps"   
@@ -89,12 +77,36 @@ Builder.load_string("""
                     on_release:
                         list_of_steps.clear_widgets()
 
+                Button:
+                    text: "Clear Entry"   
+                    font_size: 75
+                    size_hint_y: None
+                    height: 200
+                    padding: 10, 10
+                    background_color: 1, 0 , 0 , 1
+                    on_release:
+                        Exponent_entry.text = ""
+                        Base_entry.text = ""
+                        
+            Button:
+                id: steps
+                text: "Clear All"   
+                font_size: 75
+                size_hint_y: None
+                background_color: 1, 0 , 0 , 1
+                height: 200
+                padding: 10, 10
+                on_release:
+                    Exponent_entry.text = ""
+                    Base_entry.text = ""
+                    list_of_steps.clear_widgets()              
+                    
             BoxLayout:
                 cols: 2
                 id: steps
                 size_hint_y: None
-                height: 75
-                padding: 5,5        
+                height: self.minimum_height 
+                padding: 5,5         
         
                 Label:
                     font_size: 30
@@ -117,7 +129,7 @@ Builder.load_string("""
                 cols: 2
                 id: steps
                 size_hint_y: None
-                height: 75
+                height: self.minimum_height 
                 padding: 5,5        
         
                 Label:
@@ -135,43 +147,18 @@ Builder.load_string("""
                     font_size: 50
                     size_hint_y: None
                     height: 200
-                    padding: 10
-
-            BoxLayout:
-                cols: 2
-                id: steps
-                size_hint_y: None
-                height: 75
-                padding: 5,5        
-                            
-                Button:
-                    text: "Clear Entry"   
-                    font_size: 75
-                    height: 200
-                    padding: 10, 10
-                    background_color: 1, 0 , 0 , 1
-                    on_release:
-                        Exponent_entry.text = ""
-                        Base_entry.text = ""
-
-            BoxLayout:
-                cols: 2
-                padding:10
-                spacing:10
-                size_hint: 1, None
-                width:300
-                height: self.minimum_height 
+                    padding: 10              
                 
-                Button:
-                    id: steps
-                    text: "Show Steps"   
-                    font_size: 75
-                    size_hint_y: None
-                    background_color: 0, 1 , 0 , 1
-                    height: 200
-                    padding: 10, 10
-                    on_release:
-                        Exponents_steps.steps(Base_entry.text + "^" + Exponent_entry.text)    
+            Button:
+                id: steps
+                text: "Show Steps"   
+                font_size: 75
+                size_hint_y: None
+                background_color: 0, 1 , 0 , 1
+                height: 200
+                padding: 10, 10
+                on_release:
+                    Exponents_steps.steps(Base_entry.text + "^" + Exponent_entry.text)    
                         
             GridLayout:
                 id: list_of_steps

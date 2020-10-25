@@ -69,169 +69,90 @@ Builder.load_string("""
                 Button:
                     id: steps
                     text: "Clear All"   
-                    font_size: 30
+                    font_size: 75
                     size_hint_y: None
                     background_color: 1, 0 , 0 , 1
                     height: 100
                     padding: 10, 10
                     on_release:
-                        entry.text = ""
+                        Exponent_entry.text = ""
+                        Base_entry.text = ""
                         list_of_steps.clear_widgets()
 
                 Button:
                     id: steps
                     text: "Clear Steps"   
-                    font_size: 30
+                    font_size: 75
                     size_hint_y: None
                     height: 100
                     padding: 10, 10
                     on_release:
                         list_of_steps.clear_widgets()
 
-                        
-            TextInput:
-                id: entry
-                text: entry.text
-                multiline: False
-                font_size: 30
-                size_hint_y: None
-                height: 75
-                padding: 10
-                
             BoxLayout:
                 cols: 2
                 id: steps
                 size_hint_y: None
                 height: 75
-                padding: 5,5      
+                padding: 5,5        
+        
+                Label:
+                    font_size: 30
+                    size_hint_y: None
+                    height: 100
+                    font_size: 75
+                    padding: 10, 10
+                    text: "Base:"
+                                                        
+                TextInput:
+                    id: Base_entry
+                    text: Base_entry.text
+                    multiline: False
+                    font_size: 50
+                    size_hint_y: None
+                    height: 75
+                    padding: 10
+                                
+            BoxLayout:
+                cols: 2
+                id: steps
+                size_hint_y: None
+                height: 75
+                padding: 5,5        
+        
+                Label:
+                    font_size: 30
+                    size_hint_y: None
+                    height: 100
+                    font_size: 75
+                    padding: 10, 10
+                    text: "Exponent:"
+                                                    
+                TextInput:
+                    id: Exponent_entry
+                    text: Exponent_entry.text
+                    multiline: False
+                    font_size: 50
+                    size_hint_y: None
+                    height: 75
+                    padding: 10
 
-                Button:
-                    text: "^"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.carrot(entry)
-                        entry.focus = True
-    
-                Button:
-                    text: "-"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.minus_sign(entry)
-                        entry.focus = True       
+            BoxLayout:
+                cols: 2
+                id: steps
+                size_hint_y: None
+                height: 75
+                padding: 5,5        
                             
                 Button:
                     text: "Clear Entry"   
-                    font_size: 30
+                    font_size: 75
                     padding: 10, 10
-                    on_release:
-                        entry.text = ""
-
-                Button:
-                    text: "Backspace"   
-                    font_size: 30
                     background_color: 1, 0 , 0 , 1
                     on_release:
-                        Exponents_steps.backspace(entry)
-                        entry.focus = True                       
-    
-            BoxLayout:
-                cols: 2
-                id: steps
-                size_hint_y: None
-                height: 75
-                padding: 5,5    
-                
-                Button:
-                    text: "0"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.zero(entry)
-                        entry.focus = True
+                        Exponent_entry.text = ""
+                        Base_entry.text = ""
 
-                Button:
-                    text: "1"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.one(entry)
-                        entry.focus = True
-                        
-                Button:
-                    text: "2"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.two(entry)
-                        entry.focus = True
-              
-                Button:
-                    text: "3"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.three(entry)
-                        entry.focus = True
-                        
-            BoxLayout:
-                cols: 2
-                id: steps
-                size_hint_y: None
-                height: 75
-                padding: 5,5     
-                
-                Button:
-                    text: "4"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.four(entry)
-                        entry.focus = True
-
-                Button:
-                    text: "5"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.five(entry)
-                        entry.focus = True
-                        
-                Button:
-                    text: "6"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.six(entry)
-                        entry.focus = True
-              
-                Button:
-                    text: "7"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.seven(entry)
-                        entry.focus = True
- 
-
-            BoxLayout:
-                cols: 2
-                id: steps
-                size_hint_y: None
-                height: 75
-                padding: 5,5    
-                
-                Button:
-                    text: "8"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.eight(entry)
-                        entry.focus = True
-                        
-                Button:
-                    text: "9"   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.nine(entry)
-                        entry.focus = True
-                        
-                Button:
-                    text: "."   
-                    font_size: 30
-                    on_release:
-                        Exponents_steps.period(entry)
-                        entry.focus = True
             BoxLayout:
                 cols: 2
                 padding:10
@@ -243,13 +164,13 @@ Builder.load_string("""
                 Button:
                     id: steps
                     text: "Show Steps"   
-                    font_size: 30
+                    font_size: 75
                     size_hint_y: None
                     background_color: 0, 1 , 0 , 1
                     height: 100
                     padding: 10, 10
                     on_release:
-                        Exponents_steps.steps(entry.text)    
+                        Exponents_steps.steps(Base_entry.text + "^" + Exponent_entry.text)    
                         
             GridLayout:
                 id: list_of_steps
@@ -261,144 +182,7 @@ Builder.load_string("""
 """)
 
 class Exponents_steps(Screen):
-    def carrot(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "^" + entry.text[index_of_cursor:]
-        print("manip",entry.text)    
-        print()        
-        entry.cursor = index_of_cursor + 1, True  
-        
-    def minus_sign(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "-" + entry.text[index_of_cursor:]
-        print("manip",entry.text)    
-        print()        
-        entry.cursor = index_of_cursor + 1, True  
-        
-    def zero(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "0" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True    
-        
-    def one(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "1" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True         
-        
-    def two(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "2" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True             
-        
-    def three(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "3" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True
     
-    def four(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "4" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True 
-    
-    def five(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "5" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True
-    
-    def six(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "6" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True  
-    
-    def seven(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "7" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True    
-    
-    def eight(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "8" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True        
-    
-    def nine(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "9" + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True    
-        
-    def period(self, entry):
-        index_of_cursor = entry.cursor_index()
-        print("entry",entry.text)
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor] + "." + entry.text[index_of_cursor:]
-        print("manip",entry.text)        
-        print()        
-        entry.cursor = index_of_cursor + 1, True 
-        
-    def backspace(self,entry):
-        index_of_cursor = entry.cursor_index()
-        print("index_of_cursor at index : ",index_of_cursor)
-        print("left", entry.text[:index_of_cursor])
-        entry.text = entry.text[:index_of_cursor-1] + entry.text[index_of_cursor:]
-        print("entry", entry.text)
-        entry.cursor = index_of_cursor - 1, True 
-
     layouts = []
     def steps(self,entry):
         layout = GridLayout(cols=1,size_hint_y= None)
@@ -476,3 +260,5 @@ class Exponents(App):
 
 if __name__ == '__main__':
     Exponents().run()
+    
+

@@ -120,7 +120,7 @@ Builder.load_string("""
                     id: Base_entry
                     text: Base_entry.text
                     multiline: False
-                    font_size: 50
+                    font_size: 75
                     size_hint_y: None
                     height: 200
                     padding: 10
@@ -144,7 +144,7 @@ Builder.load_string("""
                     id: Power_entry
                     text: Power_entry.text
                     multiline: False
-                    font_size: 50
+                    font_size: 75
                     size_hint_y: None
                     height: 200
                     padding: 10              

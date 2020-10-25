@@ -138,11 +138,11 @@ Builder.load_string("""
                     height: 200
                     font_size: 75
                     padding: 10, 10
-                    text: "Exponent:"
+                    text: "Power:"
                                                     
                 TextInput:
-                    id: Exponent_entry
-                    text: Exponent_entry.text
+                    id: Power_entry
+                    text: Power_entry.text
                     multiline: False
                     font_size: 50
                     size_hint_y: None
@@ -158,7 +158,7 @@ Builder.load_string("""
                 height: 200
                 padding: 10, 10
                 on_release:
-                    Exponents_steps.steps(Base_entry.text + "^" + Exponent_entry.text)    
+                    Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
                         
             GridLayout:
                 id: list_of_steps

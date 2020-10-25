@@ -21,7 +21,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 60
+            font_size: 50
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -52,7 +52,7 @@ Builder.load_string("""
             height: self.minimum_height
         
             Label:
-                font_size: 60
+                font_size: 50
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -70,7 +70,7 @@ Builder.load_string("""
                 Button:
                     id: steps
                     text: "Clear Steps"   
-                    font_size: 60
+                    font_size: 50
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
@@ -79,7 +79,7 @@ Builder.load_string("""
 
                 Button:
                     text: "Clear Entry"   
-                    font_size: 60
+                    font_size: 50
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
@@ -91,7 +91,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Clear All"   
-                font_size: 60
+                font_size: 50
                 size_hint_y: None
                 background_color: 1, 0 , 0 , 1
                 height: 200
@@ -112,7 +112,7 @@ Builder.load_string("""
                     font_size: 30
                     size_hint_y: None
                     height: 200
-                    font_size: 60
+                    font_size: 50
                     padding: 10, 10
                     text: "Base:"
                                                         
@@ -136,7 +136,7 @@ Builder.load_string("""
                     font_size: 30
                     size_hint_y: None
                     height: 200
-                    font_size: 60
+                    font_size: 50
                     padding: 10, 10
                     text: "Power:"
                                                     
@@ -152,7 +152,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Show Steps"   
-                font_size: 60
+                font_size: 50
                 size_hint_y: None
                 background_color: 0, 1 , 0 , 1
                 height: 200
@@ -177,7 +177,7 @@ class Exponents_steps(Screen):
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
         
-        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + entry.replace(" ",""), font_size = 60, size_hint_y= None, height=100))
+        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + entry.replace(" ",""), font_size = 50, size_hint_y= None, height=100))
         self.layouts.append(layout)
         try:
             i = 0
@@ -197,8 +197,8 @@ class Exponents_steps(Screen):
                     expand = entry[0] + mult_signs * times
                     print()
                     print("expand",expand)
-                    self.ids.list_of_steps.add_widget(Label(text="Expanded form of : " + display, font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text=expand, font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text="Expanded form of : " + display, font_size = 50, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text=expand, font_size = 50, size_hint_y= None, height=100))
                     self.layouts.append(layout)
 
                 solved = str(float(entry[0]) ** float(entry[1]))
@@ -215,20 +215,20 @@ class Exponents_steps(Screen):
                 entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
                 print("entry string :",entry)
                 print()
-                self.ids.list_of_steps.add_widget(Label(text="Exponents step of : " + display + " = " + solved +  "  :  ", font_size = 60, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text="Exponents step of : " + display + " = " + solved +  "  :  ", font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)
             i = i + 1
             
             entry = str(format(float(entry),",")).replace("(","").replace(")","")
             print()
             print("entry formatted :    ",entry)
-            self.ids.list_of_steps.add_widget(Label(text="Final Answer : " + entry, font_size = 60, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 60, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text="Final Answer : " + entry, font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
             self.layouts.append(layout)    
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 60, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
             self.layouts.append(layout)  
 
 

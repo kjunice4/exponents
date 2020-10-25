@@ -110,7 +110,7 @@ Builder.load_string("""
                     multiline: False
                     font_size: 50
                     size_hint_y: None
-                    height: 100
+                    height: 200
                     padding: 10
                                 
             BoxLayout:
@@ -134,7 +134,7 @@ Builder.load_string("""
                     multiline: False
                     font_size: 50
                     size_hint_y: None
-                    height: 100
+                    height: 200
                     padding: 10
 
             BoxLayout:
@@ -261,3 +261,5 @@ class Exponents(App):
 
 if __name__ == '__main__':
     Exponents().run()
+    
+

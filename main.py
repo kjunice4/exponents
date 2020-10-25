@@ -70,7 +70,7 @@ Builder.load_string("""
                 Button:
                     id: steps
                     text: "Clear Steps"   
-                    font_size: 50
+                    font_size: 75
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
@@ -79,7 +79,7 @@ Builder.load_string("""
 
                 Button:
                     text: "Clear Entry"   
-                    font_size: 50
+                    font_size: 75
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
@@ -91,7 +91,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Clear All"   
-                font_size: 50
+                font_size: 75
                 size_hint_y: None
                 background_color: 1, 0 , 0 , 1
                 height: 200
@@ -109,7 +109,7 @@ Builder.load_string("""
                 padding: 5,5         
         
                 Label:
-                    font_size: 30
+                    font_size: 75
                     size_hint_y: None
                     height: 200
                     font_size: 50
@@ -133,7 +133,7 @@ Builder.load_string("""
                 padding: 5,5        
         
                 Label:
-                    font_size: 30
+                    font_size: 75
                     size_hint_y: None
                     height: 200
                     font_size: 50
@@ -152,7 +152,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Show Steps"   
-                font_size: 50
+                font_size: 75
                 size_hint_y: None
                 background_color: 0, 1 , 0 , 1
                 height: 200
@@ -215,7 +215,7 @@ class Exponents_steps(Screen):
                 entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
                 print("entry string :",entry)
                 print()
-                self.ids.list_of_steps.add_widget(Label(text="Exponents step of : " + display + " = " + solved +  "  :  ", font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved +  "  :  ", font_size = 50, size_hint_y= None, height=100))
                 self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)
             i = i + 1

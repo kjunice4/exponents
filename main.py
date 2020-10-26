@@ -112,7 +112,6 @@ Builder.load_string("""
                     font_size: 75
                     size_hint_y: None
                     height: 200
-                    font_size: 50
                     padding: 10, 10
                     text: "Base:"
                                                         
@@ -124,7 +123,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:4 - len(Base_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:3 - len(Base_entry.text)]           
             
             BoxLayout:
                 cols: 2
@@ -137,7 +136,6 @@ Builder.load_string("""
                     font_size: 75
                     size_hint_y: None
                     height: 200
-                    font_size: 50
                     padding: 10, 10
                     text: "Power:"
                                                     
@@ -149,7 +147,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10              
-                    input_filter: lambda text, from_undo: text[:3 - len(Power_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:2 - len(Power_entry.text)]           
 
             Button:
                 id: steps

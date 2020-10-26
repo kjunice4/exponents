@@ -5,7 +5,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 
-#PEMDAS STEPS
+#Opening Page
 Builder.load_string("""
 <Homepage>:
     id: Homepage
@@ -21,7 +21,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 60
+            font_size: 75
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -29,6 +29,32 @@ Builder.load_string("""
             on_release:
                 app.root.current = "Exponents_steps"
                 root.manager.transition.direction = "left" 
+
+""")
+
+Builder.load_string("""
+<Help_page>:
+    id: Help_page
+    name: "Help_page"
+    
+    GridLayout:
+        cols: 1
+        
+        Button:
+            font_size: 75
+            size_hint_y: None
+            height: 200
+            text: "Back to Exponent Solver"
+            on_release:
+                app.root.current = "Exponents_steps"
+                root.manager.transition.direction = "right"             
+                
+        Label:
+            font_size: 75
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 200
+            text: "Hello World"
 
 """)
 
@@ -52,7 +78,7 @@ Builder.load_string("""
             height: self.minimum_height
         
             Label:
-                font_size: 50
+                font_size: 75
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -66,16 +92,6 @@ Builder.load_string("""
                 width:300
                 size_hint_y: None
                 height: self.minimum_height 
-                
-                Button:
-                    id: steps
-                    text: "Clear Answers"   
-                    font_size: 75
-                    size_hint_y: None
-                    height: 200
-                    padding: 10, 10
-                    on_release:
-                        list_of_steps.clear_widgets()
 
                 Button:
                     text: "Clear Entry"   
@@ -87,6 +103,16 @@ Builder.load_string("""
                     on_release:
                         Power_entry.text = ""
                         Base_entry.text = ""
+                        
+                Button:
+                    id: steps
+                    text: "Clear Answers"   
+                    font_size: 75
+                    size_hint_y: None
+                    height: 200
+                    padding: 10, 10
+                    on_release:
+                        list_of_steps.clear_widgets()
                         
             Button:
                 id: steps
@@ -148,18 +174,37 @@ Builder.load_string("""
                     height: 200
                     padding: 10              
                     input_filter: lambda text, from_undo: text[:4 - len(Power_entry.text)]           
-
-            Button:
+            
+            BoxLayout:
+                cols: 2
                 id: steps
-                text: "Calculate"   
-                font_size: 75
                 size_hint_y: None
-                background_color: 0, 1 , 0 , 1
-                height: 200
-                padding: 10, 10
-                on_release:
-                    Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
-                        
+                height: self.minimum_height 
+                padding: 5,5  
+    
+                Button:
+                    id: help
+                    text: "Help"   
+                    font_size: 75
+                    size_hint_y: None
+                    background_color: 0, 0 , 1 , 1
+                    height: 200
+                    padding: 10, 10
+                    on_release:
+                        app.root.current = "Help_page"
+                        root.manager.transition.direction = "left" 
+                
+                Button:
+                    id: steps
+                    text: "Calculate"   
+                    font_size: 75
+                    size_hint_y: None
+                    background_color: 0, 1 , 0 , 1
+                    height: 200
+                    padding: 10, 10
+                    on_release:
+                        Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
+                       
             GridLayout:
                 id: list_of_steps
                 cols: 1
@@ -215,9 +260,7 @@ class Exponents_steps(Screen):
                 entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
                 print("entry string :",entry)
                 print()
-                self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved +  "  :  ", font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text=entry, font_size = 50, size_hint_y= None, height=100))
-                self.layouts.append(layout)
+                self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 50, size_hint_y= None, height=100))
             i = i + 1
             
             entry = str(format(float(entry),",")).replace("(","").replace(")","")
@@ -240,10 +283,13 @@ class Exponents_steps(Screen):
 class Homepage(Screen):
     pass            
            
-           
+class Help_page(Screen):
+    pass
+          
 sm = ScreenManager()
 sm.add_widget(Homepage(name="Homepage"))
-sm.add_widget(Exponents_steps(name="Exponents_steps"))      
+sm.add_widget(Exponents_steps(name="Exponents_steps"))     
+sm.add_widget(Help_page(name="Help_page"))  
 sm.current = "Homepage"   
 
 

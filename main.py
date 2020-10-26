@@ -21,11 +21,11 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 50
+            font_size: 60
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "KSquared Exponent Step By Step Solver"
+            text: "KSquared Exponent Solver"
             on_release:
                 app.root.current = "Exponents_steps"
                 root.manager.transition.direction = "left" 
@@ -56,7 +56,7 @@ Builder.load_string("""
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
-                text: "Exponents Step By Step Solver"
+                text: "Exponents Solver"
             
             BoxLayout:
                 cols: 2
@@ -69,7 +69,7 @@ Builder.load_string("""
                 
                 Button:
                     id: steps
-                    text: "Clear Steps"   
+                    text: "Clear Answers"   
                     font_size: 75
                     size_hint_y: None
                     height: 200
@@ -123,7 +123,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:3 - len(Base_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:4 - len(Base_entry.text)]           
             
             BoxLayout:
                 cols: 2
@@ -147,11 +147,11 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10              
-                    input_filter: lambda text, from_undo: text[:2 - len(Power_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:4 - len(Power_entry.text)]           
 
             Button:
                 id: steps
-                text: "Show Steps"   
+                text: "Calculate"   
                 font_size: 75
                 size_hint_y: None
                 background_color: 0, 1 , 0 , 1
@@ -187,8 +187,8 @@ class Exponents_steps(Screen):
                 display = str(entry[0]) + "^" + str(entry[1])
                 print()
                 print("display : ",display)
-                if entry[1].count(".") == 0 and entry[1].count("-") == 0:
-                    mult_signs =  " * " + entry[0]
+                """if entry[1].count(".") == 0 and entry[1].count("-") == 0:
+                    mult_signs =  " x " + entry[0]
                     print()
                     print("mult_signs",mult_signs)
                     times = int(entry[1]) - 1
@@ -199,7 +199,7 @@ class Exponents_steps(Screen):
                     print("expand",expand)
                     self.ids.list_of_steps.add_widget(Label(text="Expanded form of : " + display, font_size = 50, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text=expand, font_size = 50, size_hint_y= None, height=100))
-                    self.layouts.append(layout)
+                    self.layouts.append(layout)"""
 
                 solved = str(float(entry[0]) ** float(entry[1]))
                 print()
@@ -227,11 +227,16 @@ class Exponents_steps(Screen):
             self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
             self.layouts.append(layout)    
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
-            self.layouts.append(layout)  
-
-
+            try:
+                self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
+                self.layouts.append(layout)
+                    
+            except Exception:               
+                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
+                self.layouts.append(layout)  
+                
 class Homepage(Screen):
     pass            
            

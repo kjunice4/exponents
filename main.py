@@ -32,32 +32,6 @@ Builder.load_string("""
 
 """)
 
-Builder.load_string("""
-<Help_page>:
-    id: Help_page
-    name: "Help_page"
-    
-    GridLayout:
-        cols: 1
-        
-        Button:
-            font_size: 75
-            size_hint_y: None
-            height: 200
-            text: "Back to Exponent Solver"
-            on_release:
-                app.root.current = "Exponents_steps"
-                root.manager.transition.direction = "right"             
-                
-        Label:
-            font_size: 75
-            background_color: 0, 0 , 0 , 1
-            size_hint_y: None
-            height: 200
-            text: "Hello World"
-
-""")
-
 #EXPONENTS STEPS
 Builder.load_string("""
 <Exponents_steps>
@@ -183,18 +157,6 @@ Builder.load_string("""
                 padding: 5,5  
     
                 Button:
-                    id: help
-                    text: "Help"   
-                    font_size: 75
-                    size_hint_y: None
-                    background_color: 0, 0 , 1 , 1
-                    height: 200
-                    padding: 10, 10
-                    on_release:
-                        app.root.current = "Help_page"
-                        root.manager.transition.direction = "left" 
-                
-                Button:
                     id: steps
                     text: "Calculate"   
                     font_size: 75
@@ -283,13 +245,10 @@ class Exponents_steps(Screen):
 class Homepage(Screen):
     pass            
            
-class Help_page(Screen):
-    pass
           
 sm = ScreenManager()
 sm.add_widget(Homepage(name="Homepage"))
 sm.add_widget(Exponents_steps(name="Exponents_steps"))     
-sm.add_widget(Help_page(name="Help_page"))  
 sm.current = "Homepage"   
 
 

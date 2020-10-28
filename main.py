@@ -3,7 +3,7 @@ from kivy.lang import Builder
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
-
+from kivy.core.window import Window
 
 #Opening Page
 Builder.load_string("""
@@ -170,7 +170,21 @@ Builder.load_string("""
 """)
 
 class Exponents_steps(Screen):
-    
+    sm = ScreenManager()
+
+    def __init__(self, **kwargs):
+        super(Exponents_steps, self).__init__(**kwargs)
+        Window.bind(on_keyboard=self._key_handler)
+
+    def _key_handler(self, instance, key, *args):
+        if key == 27:
+            self.set_previous_screen()
+            return True
+
+    def set_previous_screen(self):
+        if sm.current != "Homepage":
+            sm.transition.direction = 'right'
+            sm.current = sm.previous()    
     layouts = []
     def steps(self,entry):
         layout = GridLayout(cols=1,size_hint_y= None)

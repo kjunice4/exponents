@@ -149,23 +149,16 @@ Builder.load_string("""
                     padding: 10              
                     input_filter: lambda text, from_undo: text[:4 - len(Power_entry.text)]           
             
-            BoxLayout:
-                cols: 2
+            Button:
                 id: steps
+                text: "Calculate"   
+                font_size: 75
                 size_hint_y: None
-                height: self.minimum_height 
-                padding: 5,5  
-    
-                Button:
-                    id: steps
-                    text: "Calculate"   
-                    font_size: 75
-                    size_hint_y: None
-                    background_color: 0, 1 , 0 , 1
-                    height: 200
-                    padding: 10, 10
-                    on_release:
-                        Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
+                background_color: 0, 1 , 0 , 1
+                height: 200
+                padding: 10, 10
+                on_release:
+                    Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
                        
             GridLayout:
                 id: list_of_steps

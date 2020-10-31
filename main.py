@@ -25,7 +25,7 @@ Builder.load_string("""
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "KSquared Exponent Solver"
+            text: "KSquared Exponents Solver"
             on_release:
                 app.root.current = "Exponents_steps"
                 root.manager.transition.direction = "left" 
@@ -50,13 +50,6 @@ Builder.load_string("""
             size_hint: 1, None
             width:200
             height: self.minimum_height
-        
-            Label:
-                font_size: 75
-                size_hint_y: None
-                height: 200
-                padding: 10, 10
-                text: "Exponents Solver"
             
             BoxLayout:
                 cols: 2

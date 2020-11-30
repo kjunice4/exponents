@@ -66,33 +66,22 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
-                    background_color: 1, 0 , 0 , 1
                     on_release:
                         Power_entry.text = ""
                         Base_entry.text = ""
                         
                 Button:
                     id: steps
-                    text: "Clear Answers"   
+                    text: "Clear All"   
                     font_size: 75
                     size_hint_y: None
+                    background_color: 1, 0 , 0 , 1
                     height: 200
                     padding: 10, 10
                     on_release:
-                        list_of_steps.clear_widgets()
-                        
-            Button:
-                id: steps
-                text: "Clear All"   
-                font_size: 75
-                size_hint_y: None
-                background_color: 1, 0 , 0 , 1
-                height: 200
-                padding: 10, 10
-                on_release:
-                    Power_entry.text = ""
-                    Base_entry.text = ""
-                    list_of_steps.clear_widgets()              
+                        Power_entry.text = ""
+                        Base_entry.text = ""
+                        list_of_steps.clear_widgets()              
                     
             BoxLayout:
                 cols: 2
@@ -116,7 +105,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:4 - len(Base_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:3 - len(Base_entry.text)]           
             
             BoxLayout:
                 cols: 2
@@ -140,7 +129,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10              
-                    input_filter: lambda text, from_undo: text[:4 - len(Power_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:3 - len(Power_entry.text)]           
             
             Button:
                 id: steps
@@ -151,6 +140,7 @@ Builder.load_string("""
                 height: 200
                 padding: 10, 10
                 on_release:
+                    list_of_steps.clear_widgets() 
                     Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
                        
             GridLayout:
@@ -158,8 +148,6 @@ Builder.load_string("""
                 cols: 1
                 size_hint: 1, None
                 height: self.minimum_height                  
-                    
-
 """)
 
 class Exponents_steps(Screen):
@@ -183,69 +171,100 @@ class Exponents_steps(Screen):
         layout = GridLayout(cols=1,size_hint_y= None)
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
+        entry = list(entry.split("^"))
+        print("entry ;", entry)
+        a = entry[1]
+        power = ""
+        i = 0
+        while i < len(a):
+            if a[i] == "-":
+                power = power + "\u207B"
+                print("Power :"+power)
+                
+            if a[i] == "1":
+                power = power + "\u00B9"
+                print("Power :"+power)
+                
+            if a[i] == "2":
+                power = power + "\u00B2"
+                print("Power :"+power)
+                
+            if a[i] == "3":
+                power = power + "\u00B3"
+                print("Power :"+power)      
+                
+            if a[i] == "4":
+                power = power + "\u2074"
+                print("Power :"+power)
+                
+            if a[i] == "5":
+                power = power + "\u2075"
+                print("Power :"+power)
+                
+            if a[i] == "6":
+                power = power + "\u2076"
+                print("Power :"+power)
         
-        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + entry.replace(" ",""), font_size = 50, size_hint_y= None, height=100))
+            if a[i] == "7":
+                power = power + "\u2077"
+                print("Power :"+power)
+                
+            if a[i] == "8":
+                power = power + "\u2078"
+                print("Power :"+power)
+                
+            if a[i] == "9":
+                power = power + "\u2079"
+                print("Power :"+power)
+                
+            if a[i] == "0":
+                power = power + "\u2070"
+                print("Power :"+power)
+                
+            i = i + 1   
+            display = str(entry[0]) + power
+        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 50, size_hint_y= None, height=100))
         self.layouts.append(layout)
+        
         try:
-            i = 0
-            while i < entry.count("^"):
-                entry = list(entry.split("^"))
-                print("entry ;", entry)
-                display = str(entry[0]) + "^" + str(entry[1])
-                print()
-                print("display : ",display)
-                """if entry[1].count(".") == 0 and entry[1].count("-") == 0:
-                    mult_signs =  " x " + entry[0]
-                    print()
-                    print("mult_signs",mult_signs)
-                    times = int(entry[1]) - 1
-                    print()
-                    print("times",times)
-                    expand = entry[0] + mult_signs * times
-                    print()
-                    print("expand",expand)
-                    self.ids.list_of_steps.add_widget(Label(text="Expanded form of : " + display, font_size = 50, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text=expand, font_size = 50, size_hint_y= None, height=100))
-                    self.layouts.append(layout)"""
-
-                solved = str(float(entry[0]) ** float(entry[1]))
-                print()
-                print("solved :", solved)
-                entry[0] = str(float(entry[0]) ** float(entry[1]))
-                print()
-                print("entry[0] :",entry[0])
-                if entry[1] != "":
-                    entry.pop(1)
-                print()
-                print("entry list:", entry)
-                print()
-                entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
-                print("entry string :",entry)
-                print()
-                self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 50, size_hint_y= None, height=100))
-            i = i + 1
-            
+            print()
+            print("entry[0]: " + entry[0])
+            print("entry[1]: " + entry[1])
+            print()
+            print("display : ",display)
+                
+            solved = str(float(entry[0]) ** float(entry[1]))
+            print()
+            print("solved :", solved)
+            entry[0] = str(float(entry[0]) ** float(entry[1]))
+            print()
+            print("entry[0] :",entry[0])
+            if entry[1] != "":
+                entry.pop(1)
+            print()
+            print("entry list:", entry)
+            print()
+            entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
+            print("entry string :",entry)
+            print()
+            self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 50, size_hint_y= None, height=100))
+        
             entry = str(format(float(entry),",")).replace("(","").replace(")","")
             print()
             print("entry formatted :    ",entry)
-            self.ids.list_of_steps.add_widget(Label(text="Final Answer : " + entry, font_size = 50, size_hint_y= None, height=100))
-            self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
-            self.layouts.append(layout)    
+
         except Exception:
             try:
                 self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)
                     
             except Exception:               
                 self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
-                self.ids.list_of_steps.add_widget(Label(text= "_________________________________________________________________________________________________________________________________________________________" ,font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)  
                 
 class Homepage(Screen):
     pass            
-           
-          
+
 sm = ScreenManager()
 sm.add_widget(Homepage(name="Homepage"))
 sm.add_widget(Exponents_steps(name="Exponents_steps"))     

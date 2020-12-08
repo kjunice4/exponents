@@ -263,8 +263,8 @@ class Exponents_steps(Screen):
                     entry_two = "2.71828*2.71828*2.71828"            
             print("entry_one",entry_one)   
             print("entry_two",entry_two) 
-            entry_one = entry_one.replace("*^","**")
-            entry_two = entry_two.replace("*^","**")
+            entry_one = entry_one.replace("*^","**").replace("^*","**")
+            entry_two = entry_two.replace("*^","**").replace("^*","**")
             solved = str(eval(str(entry_one).replace("^","**")) ** eval(str(entry_two).replace("^","**")))
             print()
             print("solved :", solved)

@@ -147,7 +147,8 @@ Builder.load_string("""
                 id: list_of_steps
                 cols: 1
                 size_hint: 1, None
-                height: self.minimum_height                  
+                height: self.minimum_height   
+
 """)
 
 class Exponents_steps(Screen):
@@ -171,62 +172,14 @@ class Exponents_steps(Screen):
         layout = GridLayout(cols=1,size_hint_y= None)
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
-        entry = list(entry.split("^"))
-        print("entry ;", entry)
-        a = entry[1]
-        power = ""
-        i = 0
-        while i < len(a):
-            if a[i] == "-":
-                power = power + "\u207B"
-                print("Power :"+power)
-                
-            if a[i] == "1":
-                power = power + "\u00B9"
-                print("Power :"+power)
-                
-            if a[i] == "2":
-                power = power + "\u00B2"
-                print("Power :"+power)
-                
-            if a[i] == "3":
-                power = power + "\u00B3"
-                print("Power :"+power)      
-                
-            if a[i] == "4":
-                power = power + "\u2074"
-                print("Power :"+power)
-                
-            if a[i] == "5":
-                power = power + "\u2075"
-                print("Power :"+power)
-                
-            if a[i] == "6":
-                power = power + "\u2076"
-                print("Power :"+power)
-        
-            if a[i] == "7":
-                power = power + "\u2077"
-                print("Power :"+power)
-                
-            if a[i] == "8":
-                power = power + "\u2078"
-                print("Power :"+power)
-                
-            if a[i] == "9":
-                power = power + "\u2079"
-                print("Power :"+power)
-                
-            if a[i] == "0":
-                power = power + "\u2070"
-                print("Power :"+power)
-                
-            i = i + 1   
-            display = str(entry[0]) + power
-        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 50, size_hint_y= None, height=100))
+        print("entry",entry)
+        display = entry
+        print("display :" + display)
+        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 60, size_hint_y= None, height=100))
         self.layouts.append(layout)
         
         try:
+            entry = entry.split("^")
             print()
             print("entry[0]: " + entry[0])
             print("entry[1]: " + entry[1])
@@ -247,12 +200,11 @@ class Exponents_steps(Screen):
             entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
             print("entry string :",entry)
             print()
+            solved = str(format(float(entry),",")).replace("(","").replace(")","")
+            print()
+            print("solved formatted :    ",solved)
             self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 50, size_hint_y= None, height=100))
         
-            entry = str(format(float(entry),",")).replace("(","").replace(")","")
-            print()
-            print("entry formatted :    ",entry)
-
         except Exception:
             try:
                 self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 50, size_hint_y= None, height=100))

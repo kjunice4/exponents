@@ -51,6 +51,13 @@ Builder.load_string("""
             width:200
             height: self.minimum_height
             
+            Label:
+                font_size: 75
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                text: "Exponents Solver"
+            
             BoxLayout:
                 cols: 2
                 padding:10
@@ -81,8 +88,15 @@ Builder.load_string("""
                     on_release:
                         Power_entry.text = ""
                         Base_entry.text = ""
-                        list_of_steps.clear_widgets()              
-                    
+                        list_of_steps.clear_widgets()       
+                        
+            Label:
+                font_size: 75
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                text: "Base ^ Power"
+                
             BoxLayout:
                 cols: 2
                 id: steps
@@ -247,7 +261,10 @@ class Exponents_steps(Screen):
                         entry_two = "2.71828*" + entry_two[1] + "*2.71828"
                 if entry_two.count("e") == 3:
                     entry_two = "2.71828*2.71828*2.71828"            
-                    
+            print("entry_one",entry_one)   
+            print("entry_two",entry_two) 
+            entry_one = entry_one.replace("*^","**")
+            entry_two = entry_two.replace("*^","**")
             solved = str(eval(str(entry_one).replace("^","**")) ** eval(str(entry_two).replace("^","**")))
             print()
             print("solved :", solved)

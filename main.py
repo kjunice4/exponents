@@ -141,7 +141,7 @@ Builder.load_string("""
                 padding: 10, 10
                 on_release:
                     list_of_steps.clear_widgets() 
-                    Exponents_steps.steps(Base_entry.text + "^" + Power_entry.text)    
+                    Exponents_steps.steps(Base_entry.text + "$" + Power_entry.text)    
                        
             GridLayout:
                 id: list_of_steps
@@ -173,45 +173,96 @@ class Exponents_steps(Screen):
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
         print("entry",entry)
-        display = entry
+        display = entry.replace("$","^")
+        entry_list = entry.split("$")
         print("display :" + display)
         self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 60, size_hint_y= None, height=100))
         self.layouts.append(layout)
         
         try:
-            entry = entry.split("^")
+            entry = entry_list
+            print("entry split : ",entry)
             print()
             print("entry[0]: " + entry[0])
             print("entry[1]: " + entry[1])
-            print()
-            print("display : ",display)
+            entry_one = entry[0]
+            print("length entry_one ",len(entry_one))
+            entry_two = entry[1]
+            if entry_one.count("e") > 0 and len(entry_one) == 1:
+                entry_one = "2.71828"
+            elif entry_one.count("e") > 0 and len(entry_one) == 2:
+                if entry_one == "ee":
+                    entry_one = "2.71828*2.71828"
+                elif entry_one[0] == "e":
+                    entry_one = "2.71828*" + entry_one[1]
+                elif entry_one[1] == "e":
+                    entry_one = entry_one[0] + "*2.71828"
+            elif entry_one.count("e") > 0 and len(entry_one) == 3:
+                if entry_one.count("e") == 1:
+                    if entry_one[0] == "e": 
+                        entry_one = "2.71828*" + entry_one[1:]
+                    if entry_one[1] == "e":
+                        entry_one = entry_one[0] + "2.71828*" + entry_one[2]
+                    if entry_one[2] == "e":
+                        entry_one = entry_one[:2] + "*2.71828"
+                if entry_one.count("e") == 2:    
+                    if entry_one.count("ee") > 0:
+                        entry_one = entry_one.replace("ee","_2.71828*2.71828_")
+                        if entry_one[0] == "_":
+                            entry_one = entry_one[1:]
+                        elif entry_one[-1] == "_":
+                            entry_one = entry_one[:-1]
+                        entry_one = entry_one.replace("_","*")
+                    elif entry_one[0] == "e" and entry_one[2] == "e":
+                        entry_one = "2.71828*" + entry_one[1] + "*2.71828"
+                if entry_one.count("e") == 3:
+                    entry_one = "2.71828*2.71828*2.71828"
                 
-            solved = str(float(entry[0]) ** float(entry[1]))
+            if entry_two.count("e") > 0 and len(entry_two) == 1:
+                entry_two = "2.71828"
+            elif entry_two.count("e") > 0 and len(entry_two) == 2:
+                if entry_two == "ee":
+                    entry_two = "2.71828*2.71828"
+                elif entry_two[0] == "e":
+                    entry_two = "2.71828*" + entry_two[1]
+                elif entry_two[1] == "e":
+                    entry_two = entry_two[0] + "*2.71828"
+            elif entry_two.count("e") > 0 and len(entry_two) == 3:
+                if entry_two.count("e") == 1:
+                    if entry_two[0] == "e": 
+                        entry_two = "2.71828*" + entry_two[1:]
+                    if entry_two[1] == "e":
+                        entry_two = entry_two[0] + "2.71828*" + entry_two[2]
+                    if entry_two[2] == "e":
+                        entry_two = entry_two[:2] + "*2.71828"
+                if entry_two.count("e") == 2:    
+                    if entry_two.count("ee") > 0:
+                        entry_two = entry_two.replace("ee","_2.71828*2.71828_")
+                        if entry_two[0] == "_":
+                            entry_two = entry_two[1:]
+                        elif entry_two[-1] == "_":
+                            entry_two = entry_two[:-1]
+                        entry_two = entry_two.replace("_","*")
+                    elif entry_two[0] == "e" and entry_two[2] == "e":
+                        entry_two = "2.71828*" + entry_two[1] + "*2.71828"
+                if entry_two.count("e") == 3:
+                    entry_two = "2.71828*2.71828*2.71828"            
+                    
+            solved = str(eval(str(entry_one).replace("^","**")) ** eval(str(entry_two).replace("^","**")))
             print()
             print("solved :", solved)
-            entry[0] = str(float(entry[0]) ** float(entry[1]))
             print()
-            print("entry[0] :",entry[0])
-            if entry[1] != "":
-                entry.pop(1)
-            print()
-            print("entry list:", entry)
-            print()
-            entry = str(entry).replace("[","").replace("]","").replace("'","").replace(","," ^")
-            print("entry string :",entry)
-            print()
-            solved = str(format(float(entry),",")).replace("(","").replace(")","")
-            print()
+            solved = str(format(float(solved),","))
             print("solved formatted :    ",solved)
-            self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 60, size_hint_y= None, height=100))
         
         except Exception:
             try:
-                self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 60, size_hint_y= None, height=100))
                 self.layouts.append(layout)
                     
             except Exception:               
-                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
                 self.layouts.append(layout)  
                 
 class Homepage(Screen):

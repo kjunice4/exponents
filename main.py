@@ -104,16 +104,10 @@ Builder.load_string("""
                 height: self.minimum_height 
                 padding: 5,5         
         
-                Label:
-                    font_size: 75
-                    size_hint_y: None
-                    height: 200
-                    padding: 10, 10
-                    text: "Base:"
-                                                        
                 TextInput:
                     id: Base_entry
                     text: Base_entry.text
+                    hint_text: "Base:"
                     multiline: False
                     font_size: 125
                     size_hint_y: None
@@ -128,16 +122,10 @@ Builder.load_string("""
                 height: self.minimum_height 
                 padding: 5,5        
         
-                Label:
-                    font_size: 75
-                    size_hint_y: None
-                    height: 200
-                    padding: 10, 10
-                    text: "Power:"
-                                                    
                 TextInput:
                     id: Power_entry
                     text: Power_entry.text
+                    hint_text: "Power:"
                     multiline: False
                     font_size: 125
                     size_hint_y: None

@@ -71,7 +71,6 @@ Builder.load_string("""
                     
             Button:
                 font_size: 75
-                background_color: 0, 0 , 0 , 1
                 size_hint_y: None
                 height: 400
                 text: "Visit KSquared,LLC"
@@ -80,7 +79,6 @@ Builder.load_string("""
                     webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc')
             Button:
                 font_size: 75
-                background_color: 0, 0 , 0 , 1
                 size_hint_y: None
                 height: 400
                 text: "Other apps from KSquared,LLC"
@@ -90,7 +88,6 @@ Builder.load_string("""
                 
             Button:
                 font_size: 75
-                background_color: 0, 0 , 0 , 1
                 size_hint_y: None
                 height: 400
                 text: "Donate to KSquared,LLC"
@@ -181,7 +178,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:3 - len(Base_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:2 - len(Base_entry.text)]           
             
             BoxLayout:
                 cols: 2
@@ -199,7 +196,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10              
-                    input_filter: lambda text, from_undo: text[:3 - len(Power_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:2 - len(Power_entry.text)]           
             
             Button:
                 id: steps
@@ -251,84 +248,27 @@ class Exponents_steps(Screen):
         
         try:
             entry = entry_list
-            print("entry split : ",entry)
+            print("entry split: ",entry)
             print()
-            print("entry[0]: " + entry[0])
-            print("entry[1]: " + entry[1])
-            entry_one = entry[0]
-            print("length entry_one ",len(entry_one))
-            entry_two = entry[1]
-            if entry_one.count("e") > 0 and len(entry_one) == 1:
-                entry_one = "2.71828"
-            elif entry_one.count("e") > 0 and len(entry_one) == 2:
-                if entry_one == "ee":
-                    entry_one = "2.71828*2.71828"
-                elif entry_one[0] == "e":
-                    entry_one = "2.71828*" + entry_one[1]
-                elif entry_one[1] == "e":
-                    entry_one = entry_one[0] + "*2.71828"
-            elif entry_one.count("e") > 0 and len(entry_one) == 3:
-                if entry_one.count("e") == 1:
-                    if entry_one[0] == "e": 
-                        entry_one = "2.71828*" + entry_one[1:]
-                    if entry_one[1] == "e":
-                        entry_one = entry_one[0] + "2.71828*" + entry_one[2]
-                    if entry_one[2] == "e":
-                        entry_one = entry_one[:2] + "*2.71828"
-                if entry_one.count("e") == 2:    
-                    if entry_one.count("ee") > 0:
-                        entry_one = entry_one.replace("ee","_2.71828*2.71828_")
-                        if entry_one[0] == "_":
-                            entry_one = entry_one[1:]
-                        elif entry_one[-1] == "_":
-                            entry_one = entry_one[:-1]
-                        entry_one = entry_one.replace("_","*")
-                    elif entry_one[0] == "e" and entry_one[2] == "e":
-                        entry_one = "2.71828*" + entry_one[1] + "*2.71828"
-                if entry_one.count("e") == 3:
-                    entry_one = "2.71828*2.71828*2.71828"
-                
-            if entry_two.count("e") > 0 and len(entry_two) == 1:
-                entry_two = "2.71828"
-            elif entry_two.count("e") > 0 and len(entry_two) == 2:
-                if entry_two == "ee":
-                    entry_two = "2.71828*2.71828"
-                elif entry_two[0] == "e":
-                    entry_two = "2.71828*" + entry_two[1]
-                elif entry_two[1] == "e":
-                    entry_two = entry_two[0] + "*2.71828"
-            elif entry_two.count("e") > 0 and len(entry_two) == 3:
-                if entry_two.count("e") == 1:
-                    if entry_two[0] == "e": 
-                        entry_two = "2.71828*" + entry_two[1:]
-                    if entry_two[1] == "e":
-                        entry_two = entry_two[0] + "2.71828*" + entry_two[2]
-                    if entry_two[2] == "e":
-                        entry_two = entry_two[:2] + "*2.71828"
-                if entry_two.count("e") == 2:    
-                    if entry_two.count("ee") > 0:
-                        entry_two = entry_two.replace("ee","_2.71828*2.71828_")
-                        if entry_two[0] == "_":
-                            entry_two = entry_two[1:]
-                        elif entry_two[-1] == "_":
-                            entry_two = entry_two[:-1]
-                        entry_two = entry_two.replace("_","*")
-                    elif entry_two[0] == "e" and entry_two[2] == "e":
-                        entry_two = "2.71828*" + entry_two[1] + "*2.71828"
-                if entry_two.count("e") == 3:
-                    entry_two = "2.71828*2.71828*2.71828"            
-            print("entry_one",entry_one)   
-            print("entry_two",entry_two) 
-            entry_one = entry_one.replace("*^","**").replace("^*","**")
-            entry_two = entry_two.replace("*^","**").replace("^*","**")
-            solved = str(eval(str(entry_one).replace("^","**")) ** eval(str(entry_two).replace("^","**")))
-            print()
-            print("solved :", solved)
-            print()
-            solved = str(format(float(solved),","))
-            print("solved formatted :    ",solved)
-            self.ids.list_of_steps.add_widget(Label(text= display + " = " + solved , font_size = 60, size_hint_y= None, height=100))
-        
+            
+            base = entry_list[0]
+            print("base",base)
+            
+            power = entry_list[1]
+            print("power",power)
+            
+            self.ids.list_of_steps.add_widget(Label(text= base + " is multiplied " + power + " time(s)", font_size = 60, size_hint_y= None, height=100))
+            
+            i = 0
+            product = base
+            power_ = power
+            while i < int(power_):
+                length = product + (" * " + base) * (int(power) - 1)
+                self.ids.list_of_steps.add_widget(Label(text= length ,font_size = 60, size_hint_y= None, height=100))
+                power = int(power) - 1
+                product = "{:,}".format(int(product.replace(",","")) * int(base))
+                i = i + 1
+            
         except Exception:
             try:
                 self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 60, size_hint_y= None, height=100))

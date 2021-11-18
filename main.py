@@ -77,24 +77,6 @@ Builder.load_string("""
                 on_release:
                     import webbrowser
                     webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc')
-            Button:
-                font_size: 75
-                size_hint_y: None
-                height: 400
-                text: "Other apps from KSquared,LLC"
-                on_release:
-                    import webbrowser
-                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc/subscribe')   
-                
-            Button:
-                font_size: 75
-                size_hint_y: None
-                height: 400
-                text: "Donate to KSquared,LLC"
-                on_release:
-                    import webbrowser
-                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc/about-ksquared')
-            
 """)
 
 #EXPONENTS STEPS
@@ -133,14 +115,15 @@ Builder.load_string("""
                 height: self.minimum_height 
 
                 Button:
-                    text: "Clear Entry"   
+                    text: "Menu"   
                     font_size: 75
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
+                    background_color: 0, 0 , 1 , 1
                     on_release:
-                        Power_entry.text = ""
-                        Base_entry.text = ""
+                        app.root.current = "Menu"
+                        root.manager.transition.direction = "right" 
                         
                 Button:
                     id: steps
@@ -298,3 +281,4 @@ class Exponents(App):
 if __name__ == '__main__':
     Exponents().run()
     
+

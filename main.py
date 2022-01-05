@@ -21,15 +21,25 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 75
+            font_size: 60
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
-            height: 200
-            text: "KSquared Exponents Calculator"
+            height: 100
+            text: "Exponents Calculator"
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "left"         
+        Button:
+            font_size: 60
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 100
+            text: "KSquared-math,LLC ©"
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
-
+                
+        
 """)
 
 # Menu
@@ -161,7 +171,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:2 - len(Base_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:3 - len(Base_entry.text)]           
             
             BoxLayout:
                 cols: 2

@@ -171,7 +171,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:2 - len(Base_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:3 - len(Base_entry.text)]           
             
             BoxLayout:
                 cols: 2
@@ -189,7 +189,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10              
-                    input_filter: lambda text, from_undo: text[:1 - len(Power_entry.text)]           
+                    input_filter: lambda text, from_undo: text[:2 - len(Power_entry.text)]           
             
             Button:
                 id: steps

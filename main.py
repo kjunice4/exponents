@@ -229,6 +229,7 @@ class Exponents_steps(Screen):
             sm.current = "Menu"
     layouts = []
     def steps(self,entry):
+        print()
         layout = GridLayout(cols=1,size_hint_y= None)
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
@@ -236,7 +237,12 @@ class Exponents_steps(Screen):
         display = entry.replace("$","^")
         entry_list = entry.split("$")
         print("display :" + display)
-        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 60, size_hint_y= None, height=100))
+        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 50, size_hint_y= None, height=100))
+        Answer = str(eval(str(display).replace("^","**")))
+        Answer = "{:,}".format(int(Answer.replace(",","")))
+        print("Answer",Answer)
+        self.ids.list_of_steps.add_widget(Label(text="Answer: " + '[color=33CAFF]' + Answer + '[/color]', markup=True, font_size = 50, size_hint_y= None, height=100))
+
         self.layouts.append(layout)
         
         try:
@@ -250,25 +256,31 @@ class Exponents_steps(Screen):
             power = entry_list[1]
             print("power",power)
             
-            self.ids.list_of_steps.add_widget(Label(text= base + " is multiplied " + power + " time(s)", font_size = 60, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text="Proof of work:", font_size = 50, size_hint_y= None, height=100))
             
             i = 0
             product = base
             power_ = power
             while i < int(power_):
-                length = product + (" * " + base) * (int(power) - 1)
-                self.ids.list_of_steps.add_widget(Label(text= length ,font_size = 60, size_hint_y= None, height=100))
+                length = '[color=33CAFF]' + product + '[/color]' + " * " + base
+                print("length",length)
+                if int(power) > 1:
+                    self.ids.list_of_steps.add_widget(Label(text= length ,font_size = 50, markup=True, size_hint_y= None, height=100))
+                else:
+                    self.ids.list_of_steps.add_widget(Label(text= '[color=33CAFF]' + product + '[/color]', markup=True, font_size = 50, size_hint_y= None, height=100))
                 power = int(power) - 1
+                print("power",power)
                 product = "{:,}".format(int(product.replace(",","")) * int(base))
+                print("product",product)
                 i = i + 1
             
         except Exception:
             try:
-                self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Out Of Range" ,font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)
                     
             except Exception:               
-                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
                 self.layouts.append(layout)  
                 
 class Homepage(Screen):

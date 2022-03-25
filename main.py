@@ -313,19 +313,19 @@ class Exponents_steps(Screen):
         layout = GridLayout(cols=1,size_hint_y= None)
         self.ids.list_of_steps.add_widget(layout)
         self.layouts.append(layout)
-        print("entry",entry)
-        display = entry.replace("$","^")
-        entry_list = entry.split("$")
-        print("display :" + display)
-        self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 50, size_hint_y= None, height=100))
-        Answer = str(eval(str(display).replace("^","**")))
-        Answer = "{:,}".format(float(Answer.replace(",","")))
-        print("Answer",Answer)
-        self.ids.list_of_steps.add_widget(Label(text="Answer: " + '[color=33CAFF]' + Answer + '[/color]', markup=True, font_size = 50, size_hint_y= None, height=100))
-
-        self.layouts.append(layout)
         
         try:
+            print("entry",entry)
+            display = entry.replace("$","^")
+            entry_list = entry.split("$")
+            print("display :" + display)
+            self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 50, size_hint_y= None, height=100))
+            Answer = str(eval(str(display).replace("^","**")))
+            Answer = "{:,}".format(float(Answer.replace(",","")))
+            print("Answer",Answer)
+            self.ids.list_of_steps.add_widget(Label(text="Answer: " + '[color=33CAFF]' + Answer + '[/color]', markup=True, font_size = 50, size_hint_y= None, height=100))
+            self.layouts.append(layout)
+            
             entry = entry_list
             print("entry split: ",entry)
             print()

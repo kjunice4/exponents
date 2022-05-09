@@ -21,7 +21,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
         
         Button:
-            font_size: 50
+            font_size: '20sp'
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -31,7 +31,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left"        
 
         Button:
-            font_size: 50
+            font_size: '20sp'
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 100
@@ -135,7 +135,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 60
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -154,14 +154,14 @@ Builder.load_string("""
                     root.manager.transition.direction = "right" 
                     
             Label:
-                font_size: 40
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
                 text: "Exponents Calculator v0.1"
                 
             Label:
-                font_size: 40
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -193,7 +193,7 @@ Builder.load_string("""
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
-                text: "Exponents Solver"
+                text: "Exponents Calculator"
             
             BoxLayout:
                 cols: 2
@@ -206,7 +206,7 @@ Builder.load_string("""
 
                 Button:
                     text: "Menu"   
-                    font_size: 75
+                    font_size: '20sp'
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
@@ -218,7 +218,7 @@ Builder.load_string("""
                 Button:
                     id: steps
                     text: "Clear All"   
-                    font_size: 75
+                    font_size: '20sp'
                     size_hint_y: None
                     background_color: 1, 0 , 0 , 1
                     height: 200
@@ -229,7 +229,7 @@ Builder.load_string("""
                         list_of_steps.clear_widgets()       
                         
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -247,7 +247,7 @@ Builder.load_string("""
                     text: Base_entry.text
                     hint_text: "Base:"
                     multiline: False
-                    font_size: 125
+                    font_size: '35sp'
                     size_hint_y: None
                     height: 200
                     padding: 10
@@ -265,7 +265,7 @@ Builder.load_string("""
                     text: Power_entry.text
                     hint_text: "Power:"
                     multiline: False
-                    font_size: 125
+                    font_size: '35sp'
                     size_hint_y: None
                     height: 200
                     padding: 10              
@@ -274,7 +274,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Calculate"   
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 background_color: 0, 1 , 0 , 1
                 height: 200
@@ -309,11 +309,11 @@ class Exponents_steps(Screen):
             display = entry.replace("$","^")
             entry_list = entry.split("$")
             print("display :" + display)
-            self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text="Expression entered : " + display, font_size = '20sp', size_hint_y= None, height=100))
             Answer = str(eval(str(display).replace("^","**")))
             Answer = "{:,}".format(float(Answer.replace(",","")))
             print("Answer",Answer)
-            self.ids.list_of_steps.add_widget(Label(text="Answer: " + '[color=33CAFF]' + Answer + '[/color]', markup=True, font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text="Answer: " + '[color=33CAFF]' + Answer + '[/color]', markup=True, font_size = '20sp', size_hint_y= None, height=100))
             self.layouts.append(layout)
             
             entry = entry_list
@@ -327,7 +327,7 @@ class Exponents_steps(Screen):
             print("power",power)
             
             if power.find("-") < 0:
-                self.ids.list_of_steps.add_widget(Label(text="Proof of work:", font_size = 50, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text="Proof of work:", font_size = '20sp', size_hint_y= None, height=100))
                 
                 i = 0
                 product = base
@@ -336,9 +336,9 @@ class Exponents_steps(Screen):
                     length = '[color=33CAFF]' + product + '[/color]' + " * " + base
                     print("length",length)
                     if int(power) > 1:
-                        self.ids.list_of_steps.add_widget(Label(text= length ,font_size = 50, markup=True, size_hint_y= None, height=100))
+                        self.ids.list_of_steps.add_widget(Label(text= length ,font_size = '20sp', markup=True, size_hint_y= None, height=100))
                     else:
-                        self.ids.list_of_steps.add_widget(Label(text= '[color=33CAFF]' + product + '[/color]', markup=True, font_size = 50, size_hint_y= None, height=100))
+                        self.ids.list_of_steps.add_widget(Label(text= '[color=33CAFF]' + product + '[/color]', markup=True, font_size = '20sp', size_hint_y= None, height=100))
                     power = int(power) - 1
                     print("power",power)
                     product = "{:,}".format(float(product.replace(",","")) * float(base))
@@ -346,7 +346,7 @@ class Exponents_steps(Screen):
                     i = i + 1
             
         except Exception:
-            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 50, size_hint_y= None, height=100))
+            self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = '20sp', size_hint_y= None, height=100))
             self.layouts.append(layout)  
                 
 class Homepage(Screen):

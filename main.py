@@ -35,7 +35,17 @@ Builder.load_string("""
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 100
-            text: "KSquared-Mathematics : Exponents Calculator"
+            text: "KSquared-Mathematics"
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "left" 
+                
+        Button:
+            font_size: '20sp'
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 100
+            text: "Exponents Calculator"
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 

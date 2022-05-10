@@ -73,7 +73,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -81,7 +81,7 @@ Builder.load_string("""
             
             Button:
                 text: "Exponents Calculator"   
-                font_size: 75
+                font_size: '20sp'
                 background_color: 0, 0 , 1 , 1
                 size_hint_y: None
                 height: 200
@@ -91,7 +91,7 @@ Builder.load_string("""
                     root.manager.transition.direction = "left" 
                     
             Button:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -101,7 +101,7 @@ Builder.load_string("""
                     webbrowser.open('https://www.ksquaredmathematics.com/subscribe') 
                     
             Button:
-                font_size: 75
+                font_size: '20sp'
                 background_color: 1, 0, 1, 1
                 size_hint_y: None
                 height: 200
@@ -112,7 +112,7 @@ Builder.load_string("""
                     root.manager.transition.direction = "left"
                     
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -154,7 +154,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Menu"   
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 background_color: 0, 0 , 1 , 1
                 height: 200
@@ -199,7 +199,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
